@@ -1,4 +1,4 @@
-import { Container, Typography, Box, List, ListItem, ListItemText, Avatar, Collapse } from '@mui/material';
+import { Container, Typography, Box, List, ListItem, ListItemText, Avatar } from '@mui/material';
 import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from '@mui/icons-material/Person';
 import MenuBookIcon from '@mui/icons-material/MenuBook';

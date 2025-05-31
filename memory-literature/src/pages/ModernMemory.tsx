@@ -1,4 +1,4 @@
-import { Container, Typography, Box, Paper, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Container, Typography, Box, Paper, List, ListItem, ListItemText} from '@mui/material';
 import { motion } from 'framer-motion';
 import InteractiveElements from '../components/InteractiveElements';
 

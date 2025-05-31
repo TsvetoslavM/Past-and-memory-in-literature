@@ -1,4 +1,4 @@
-import { Container, Typography, Box, Paper, Tooltip, Popover } from '@mui/material';
+import { Container, Typography, Box, Paper, Popover } from '@mui/material';
 import { motion } from 'framer-motion';
 import InteractiveElements from '../components/InteractiveElements';
 import { useState } from 'react';
