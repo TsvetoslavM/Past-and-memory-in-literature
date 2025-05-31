@@ -1,11 +1,23 @@
-import { Container, Typography, Box, Paper, Grid } from '@mui/material';
+import React from 'react';
+import { Container, Typography, Box, Paper, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
-import InteractiveElements from '../components/InteractiveElements';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MuseumIcon from '@mui/icons-material/Museum';
 import HistoryIcon from '@mui/icons-material/History';
 import HealingIcon from '@mui/icons-material/Healing';
+
+interface MemoryType {
+  title: string;
+  icon: React.ReactNode;
+  color: string;
+  description: string;
+  function: string;
+  examples: Array<{
+    title: string;
+    content: string;
+  }>;
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -21,7 +33,7 @@ const fadeInUp = {
 };
 
 const MemoryTypes = () => {
-  const memoryTypes = [
+  const memoryTypes: MemoryType[] = [
     {
       title: "Лична (епизодична) памет",
       icon: <PsychologyIcon sx={{ fontSize: 40 }} />,
@@ -77,7 +89,7 @@ const MemoryTypes = () => {
         },
         {
           title: "\"Железният светилник\" - Димитър Талев",
-          content: "Романът проследява съхраняването на българската културна идентичност в условията на чуждо владичество."
+          content: "Romanът проследява съхраняването на българската културна идентичност в условията на чуждо владичество."
         },
         {
           title: "\"Бай Ганьо\" - Алеко Константинов",
@@ -98,7 +110,7 @@ const MemoryTypes = () => {
         },
         {
           title: "\"Записки по българските въстания\" - Захари Стоянов",
-          content: "Мемоарният труд документира събитията от Априлското въстание, предоставяйки ценна историческа информация."
+          content: "Мемоарният труд документира събитията от Aприлското въстание, предоставяйки ценна историческа информация."
         },
         {
           title: "\"История\" - Никола Вапцаров",
@@ -129,10 +141,18 @@ const MemoryTypes = () => {
     }
   ];
 
+  const scrollToSection = (id: string): void => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <InteractiveElements type="memory-types" />
-      
       <Box sx={{ mb: 8, textAlign: 'center' }}>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -147,12 +167,65 @@ const MemoryTypes = () => {
           </Typography>
           <PsychologyIcon sx={{ color: '#6C63FF', fontSize: 48, mb: 2 }} />
         </motion.div>
+
+        {/* Navigation Circles */}
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            gap: 4, 
+            mt: 4,
+            flexWrap: 'wrap'
+          }}
+        >
+          {memoryTypes.map((type, index) => (
+            <motion.div
+              key={type.title}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ textAlign: 'center' }}
+            >
+              <IconButton
+                onClick={() => scrollToSection(`memory-type-${index}`)}
+                sx={{
+                  width: 70,
+                  height: 70,
+                  backgroundColor: `${type.color}15`,
+                  border: `2px solid ${type.color}`,
+                  color: type.color,
+                  '&:hover': {
+                    backgroundColor: `${type.color}30`,
+                    transform: 'translateY(-2px)',
+                    boxShadow: `0 4px 12px ${type.color}40`
+                  },
+                  transition: 'all 0.3s ease',
+                  mb: 1
+                }}
+              >
+                {type.icon}
+              </IconButton>
+              <Typography 
+                variant="body2" 
+                sx={{ 
+                  color: type.color,
+                  fontWeight: 600,
+                  maxWidth: 120,
+                  textAlign: 'center',
+                  fontSize: '0.9rem'
+                }}
+              >
+                {type.title}
+              </Typography>
+            </motion.div>
+          ))}
+        </Box>
       </Box>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {memoryTypes.map((type, index) => (
           <motion.div
             key={type.title}
+            id={`memory-type-${index}`}
             custom={index}
             variants={fadeInUp}
             initial="hidden"
@@ -180,37 +253,42 @@ const MemoryTypes = () => {
                   {type.title}
                 </Typography>
               </Box>
+              
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                <Box sx={{ pl: 2, borderLeft: `3px solid ${type.color}` }}>
+                  <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600, mb: 1 }}>
+                    Описание
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ pl: 4 }}>
+                    {type.description}
+                  </Typography>
+                </Box>
 
-              <Box sx={{ mb: 3 }}>
-                <Typography variant="h6" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
-                  Описание
-                </Typography>
-                <Typography variant="body1" color="text.secondary" paragraph>
-                  {type.description}
-                </Typography>
-                <Typography variant="h6" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
-                  Функция в литературата
-                </Typography>
-                <Typography variant="body1" color="text.secondary" paragraph>
-                  {type.function}
-                </Typography>
-              </Box>
+                <Box sx={{ pl: 2, borderLeft: `3px solid ${type.color}` }}>
+                  <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600, mb: 1 }}>
+                    Функция в литературата
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ pl: 4 }}>
+                    {type.function}
+                  </Typography>
+                </Box>
 
-              <Box sx={{ pl: 2, borderLeft: `3px solid ${type.color}` }}>
-                <Typography variant="h6" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
-                  Примери
-                </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                  {type.examples.map((example) => (
-                    <Box key={example.title} sx={{ mb: 2 }}>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600, color: type.color }}>
-                        {example.title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {example.content}
-                      </Typography>
-                    </Box>
-                  ))}
+                <Box sx={{ pl: 2, borderLeft: `3px solid ${type.color}` }}>
+                  <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 600, mb: 1 }}>
+                    Примери
+                  </Typography>
+                  <Box sx={{ pl: 4 }}>
+                    {type.examples.map((example) => (
+                      <Box key={example.title} sx={{ mb: 2 }}>
+                        <Typography variant="subtitle1" sx={{ color: type.color, fontWeight: 600, mb: 0.5 }}>
+                          {example.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {example.content}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
                 </Box>
               </Box>
             </Paper>
@@ -221,4 +299,4 @@ const MemoryTypes = () => {
   );
 };
 
-export default MemoryTypes; 
+export default MemoryTypes;

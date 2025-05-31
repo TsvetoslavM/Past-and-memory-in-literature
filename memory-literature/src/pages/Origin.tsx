@@ -151,7 +151,7 @@ const Origin = () => {
               </Box>
               
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                {era.sections.map((section, idx) => (
+                {era.sections.map((section) => (
                   <Box key={section.subtitle} sx={{ pl: 2, borderLeft: `3px solid ${era.color}` }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
                       <Box sx={{ color: era.color }}>
