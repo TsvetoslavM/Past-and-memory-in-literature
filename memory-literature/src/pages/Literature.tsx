@@ -8,6 +8,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import { useState } from 'react';
 
 interface LiteraryExample {
+  id: string;
   author: string;
   work: string;
   quote: string;
@@ -17,108 +18,126 @@ interface LiteraryExample {
 
 const literaryExamples: LiteraryExample[] = [
   {
+    id: "vaz-1",
     author: 'Иван Вазов',
     work: 'Епопея на забравените',
     quote: 'О, неразумни юроде, поради що се срамиш да се наречеш българин?',
     analysis: 'Цикълът от поеми възкресява спомена за героични личности и събития от българската история, подчертавайки значението на колективната памет за националната идентичност.'
   },
   {
+    id: "tal-1",
     author: 'Димитър Талев',
     work: 'Железният светилник',
     quote: 'Миналото не умира, то живее в нас.',
     analysis: 'Романът проследява живота на българско семейство през Възраждането, като подчертава значението на паметта за съхраняване на националната идентичност и културните традиции.'
   },
   {
+    id: "el-1",
     author: 'Елисавета Багряна',
     work: 'Старонародни образи',
     quote: 'В песните на баба ми живеят спомените на народа.',
     analysis: 'В този цикъл стихове Багряна използва фолклорни мотиви и образи, за да изрази връзката между индивидуалната и колективната памет, съхранявана чрез народните песни и предания.'
   },
   {
+    id: "pav-1",
     author: 'Павел Вежинов',
     work: 'Нощем с белите коне',
     quote: 'Миналото е като сянка, която винаги ни следва.',
     analysis: 'Романът разглежда темата за паметта чрез мистични и символични елементи, като показва как спомените и преживяванията от миналото влияят върху настоящето и формират личността.'
   },
   {
+    id: "geo-1",
     author: 'Гео Милев',
     work: 'Септември',
     quote: 'Паметта на народа е като жива рана.',
     analysis: 'Поемата отразява събитията от Септемврийското въстание през 1923 г., като представя колективната памет за страданията и борбата на народа срещу потисничеството.'
   },
   {
+    id: "pet-1",
     author: 'Петко Р. Славейков',
     work: 'Изворът на Белоногата',
     quote: 'И ний сме дали нещо на светът.',
     analysis: 'Поемата представя идеализирания патриархален свят на миналото, акцентирайки върху необходимостта да се отстоява народностната чест и правото на свободен избор.'
   },
   {
+    id: "pey-1",
     author: 'Пейо Яворов',
     work: 'Заточеници',
     quote: 'Ний бяхме млади, ний бяхме силни.',
     analysis: 'Стихотворението изразява носталгията и болката на българските революционери, изпратени на заточение, като паметта за родината и борбата остава жива в сърцата им.'
   },
   {
+    id: "vaz-2",
     author: 'Иван Вазов',
     work: 'Под игото',
     quote: 'Всичко беше в очакване на нещо велико.',
     analysis: 'Романът описва живота на българите преди Освобождението, съхранявайки историческата памет за този период и формирайки националното съзнание.'
   },
   {
+    id: "pey-2",
     author: 'Пейо Яворов',
     work: 'Арменци',
     quote: 'Те нямат нищо, но имат всичко – спомена.',
     analysis: 'Стихотворението изразява състрадание към страданията на арменския народ, като личната памет на лирическия герой се преплита с колективната трагедия.'
   },
   {
+    id: "tal-2",
     author: 'Димитър Талев',
     work: 'Железният светилник',
     quote: 'Светилникът гореше с пламък на вяра и надежда.',
     analysis: 'Романът проследява съхраняването на българската културна идентичност в условията на чуждо владичество, акцентирайки върху културната памет.'
   },
   {
+    id: "geg-1",
     author: 'Георги Господинов',
     work: 'Времеубежище',
     quote: 'Миналото е убежище, но и капан.',
     analysis: 'Романът разглежда как обществата се обръщат към миналото в търсене на утеха, изследвайки политическите и лични аспекти на паметта.'
   },
   {
+    id: "vaz-3",
     author: 'Иван Вазов',
     work: 'Новото гробище над Сливница',
     quote: 'Тук лежат героите, забравени от живите.',
     analysis: 'Стихотворението отдава почит на загиналите в Сръбско-българската война, подчертавайки важността на запазването на историческата памет.'
   },
   {
+    id: "za-1",
     author: 'Захари Стоянов',
     work: 'Записки по българските въстания',
     quote: 'Паметта на народа е най-сигурният летописец.',
     analysis: 'Мемоарният труд документира събитията от Aприлското въстание, предоставяйки ценна историческа информация и съхранявайки колективната памет.'
   },
   {
+    id: "vaz-4",
     author: 'Иван Вазов',
     work: 'Паисий',
     quote: 'Историята е паметта на народа.',
     analysis: 'Одата подчертава значението на историческата памет за националното пробуждане и съхраняването на българската идентичност.'
   },
   {
+    id: "hristo-1",
     author: 'Христо Ботев',
     work: 'На прощаване',
     quote: 'Кажи на майка ми, че умирам за свободата.',
     analysis: 'Поемата изразява личната памет и саможертвата на героя в името на свободата, оставяйки следа в националната памет.'
   },
   {
+    id: "hristo-2",
     author: 'Христо Ботев',
     work: 'Обесването на Васил Левски',
     quote: 'Той беше човек, който живя за народа.',
     analysis: 'Стихотворението отдава почит на Васил Левски, подчертайки неговата роля в българската история и значението на паметта за героите.'
   },
   {
+    id: "nik-1",
     author: 'Никола Вапцаров',
     work: 'История',
     quote: 'Какво ще ни дадеш, историйо, от пожълтелите си страници?... Ще хванеш контурите само, а вътре, знам, ще бъде празно и няма никой да разказва за простата човешка драма.',
     analysis: 'В стихотворението Вапцаров поставя под въпрос официалната история, която често пренебрегва съдбата на обикновения човек. Той противопоставя "пожълтелите страници" на живата, човешка памет, която съхранява страданията и борбите на народа.'
   },
   {
+    id: "jord-1",
     author: 'Йордан Радичков',
     work: 'Ноев ковчег',
     quote: 'Паметта е ковчег, в който събирамеostenките от живота.',
@@ -128,6 +147,7 @@ const literaryExamples: LiteraryExample[] = [
 
 const worldLiteratureExamples: LiteraryExample[] = [
   {
+    id: "prou-1",
     author: 'Marcel Proust',
     work: 'In Search of Lost Time',
     quote: 'The taste of the madeleine awakened memories hidden in the depths of consciousness.',
@@ -135,6 +155,7 @@ const worldLiteratureExamples: LiteraryExample[] = [
     distinctiveFeatures: 'Прустовата концепция за неволевата памет революционизира литературното изобразяване на времето и съзнанието. Неговото влияние се простира върху множество писатели и философи, включително Жил Дельоз, който анализира как паметта интерпретира знаците творчески, но неточно.'
   },
   {
+    id: "jorge-1",
     author: 'Jorge Luis Borges',
     work: 'Funes the Memorious',
     quote: 'Funes could remember every detail of every moment.',
@@ -142,6 +163,7 @@ const worldLiteratureExamples: LiteraryExample[] = [
     distinctiveFeatures: 'Борхес използва Фунес като метафора за границите на човешкото познание и опасностите от прекомерната памет. Разказът е вдъхновил множество произведения и изследвания, свързани с паметта и нейните патологии.'
   },
   {
+    id: "kaz-1",
     author: 'Kazuo Ishiguro',
     work: 'The Remains of the Day',
     quote: 'Memories are all we have left.',
@@ -149,6 +171,7 @@ const worldLiteratureExamples: LiteraryExample[] = [
     distinctiveFeatures: 'Ишигуро разглежда темата за паметта чрез призмата на личната отговорност и историческата вина. Неговият стил се отличава с фокус върху неизказаното и вътрешните конфликти, свързани с паметта и забравата.'
   },
   {
+    id: "annie-1",
     author: 'Annie Ernaux',
     work: 'The Years',
     quote: 'Memory is like a photograph – it fades with time.',
@@ -156,6 +179,7 @@ const worldLiteratureExamples: LiteraryExample[] = [
     distinctiveFeatures: 'Ерно съчетава личната история с колективната, създавайки нов жанр, който се намира между автобиографията и социологическото изследване. Нейният стил е повлиян от Жорж Перек и се характеризира с опит да се отговори на амнезията на съвременното общество чрез изчерпателно представяне на реалността.'
   },
   {
+    id: "ahlam-1",
     author: 'Ahlam Mostaganmi',
     work: 'Memory in the Flesh',
     quote: 'The scars of the body are the imprints of memory.',
@@ -163,13 +187,15 @@ const worldLiteratureExamples: LiteraryExample[] = [
     distinctiveFeatures: 'Мостаганми е първата алжирска жена, която пише роман на арабски език, като по този начин преодолява лингвистичната колониална доминация. Нейният роман е алегория за постколониалната травма и е повлиял на множество арабски писателки, насърчавайки ги да изразяват своите истории на роден си език.'
   },
   {
+    id: "yoko-1",
     author: 'Yoko Ogawa',
     work: 'The Memory Police',
     quote: 'When something is gone, it is gone forever.',
-    analysis: 'В този дистопичен роман, жителите на остров постепенно забравят обекти, понятия и спомени, които изчезват от живота им. Главната героиня, писателка, се опитва да съхрани спомените си, докато властите – Полицията на паметта – следят за пълното изчезване на забравеното.',
+    analysis: 'В този дистопичен роман, жителите на остров постепенно забравят обекти, понятия и спомени, които изчезват от живота им. Главната героиня, революционна, се опитва да съхрани спомените си, докато властите – Полицията на паметта – следят за пълното изчезване на забравеното.',
     distinctiveFeatures: 'Романът изследва темата за колективната амнезия и контрола върху паметта в тоталитарно общество. Сравняван е с творбите на Джордж Оруел и Франц Кафка, като подчертава опасностите от загубата на индивидуалната и културната памет.'
   },
   {
+    id: "kaz-2",
     author: 'Kazuo Ishiguro',
     work: 'The Buried Giant',
     quote: 'The fog of oblivion covered everything, but the truth always found its way.',
@@ -177,6 +203,7 @@ const worldLiteratureExamples: LiteraryExample[] = [
     distinctiveFeatures: 'Романът разглежда темата за съзнателното забравяне като средство за избягване на конфликти, поставяйки въпроса дали истинският мир може да се постигне чрез потискане на болезнените спомени.'
   },
   {
+    id: "georges-1",
     author: 'Georges Perec',
     work: 'W or Memory of Childhood',
     quote: 'My memory is full of holes, but it is these gaps that shape it.',
@@ -230,13 +257,19 @@ const Literature = () => {
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <InteractiveElements type="literature" />
       <Box sx={{ mb: 6, textAlign: 'center' }}>
-        <Typography variant="h1" component="h1" gutterBottom>
-          Литературни примери
-        </Typography>
-        <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
-          Паметта в българската и световната литература
-        </Typography>
-        <MenuBookIcon sx={{ color: '#6C63FF', fontSize: 48, mb: 2 }} />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Typography variant="h1" component="h1" gutterBottom>
+            Литературни примери
+          </Typography>
+          <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
+            Паметта в българската и световната литература
+          </Typography>
+          <MenuBookIcon sx={{ color: '#6C63FF', fontSize: 48, mb: 2 }} />
+        </motion.div>
       </Box>
 
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 480 }}>
@@ -246,7 +279,7 @@ const Literature = () => {
         <Box sx={{ position: 'relative', width: { xs: '100%', sm: 700, md: 1000 }, minHeight: 520, perspective: 1200, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
-              key={page}
+              key={allLiteraryExamples[page].id}
               style={{
                 width: '100%',
                 height: '100%',
@@ -293,7 +326,7 @@ const Literature = () => {
                 {/* Left page: Author and Work */}
                 <AnimatePresence custom={direction} mode="wait">
                   <motion.div
-                    key={page + '-left'}
+                    key={allLiteraryExamples[page].id + '-left'}
                     custom={direction}
                     variants={leftPageVariants}
                     initial="initial"
@@ -325,7 +358,7 @@ const Literature = () => {
                 {/* Right page: Quote and Analysis */}
                 <AnimatePresence custom={direction} mode="wait">
                   <motion.div
-                    key={page + '-right'}
+                    key={allLiteraryExamples[page].id + '-right'}
                     custom={direction}
                     variants={rightPageVariants}
                     initial="initial"
@@ -362,7 +395,7 @@ const Literature = () => {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, justifyContent: 'center', alignItems: 'stretch' }}>
           {literaryExamples.map((example) => (
             <Paper
-              key={example.author + example.work}
+              key={example.id}
               elevation={3}
               sx={{
                 minWidth: 260,
@@ -418,7 +451,7 @@ const Literature = () => {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, justifyContent: 'center', alignItems: 'stretch' }}>
           {worldLiteratureExamples.map((example) => (
             <Paper
-              key={example.author + example.work}
+              key={example.id}
               elevation={3}
               sx={{
                 minWidth: 280,

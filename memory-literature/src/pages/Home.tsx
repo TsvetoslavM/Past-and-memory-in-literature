@@ -56,14 +56,20 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography variant="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3rem' }, background: 'linear-gradient(90deg, #6C63FF 0%, #FF6584 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 2 }}>
-              Да помниш значи да живееш
-            </Typography>
-            <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
-              Открийте ролята на паметта в българската литература и култура
-            </Typography>
-            <AutoAwesomeIcon sx={{ color: '#FF6584', fontSize: 48, mt: 1 }} />
+          <Box sx={{ mb: 6, textAlign: 'center' }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Typography variant="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3rem' }, background: 'linear-gradient(90deg, #6C63FF 0%, #FF6584 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 2 }}>
+                Да помниш значи да живееш
+              </Typography>
+              <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
+                Открийте ролята на паметта в българската литература и култура
+              </Typography>
+              <AutoAwesomeIcon sx={{ color: '#FF6584', fontSize: 48, mb: 2 }} />
+            </motion.div>
           </Box>
         </motion.div>
 
@@ -250,7 +256,7 @@ const Home = () => {
                 },
                 {
                   question: 'Коя роля играе личната памет във формирането на идентичността?',
-                  answer: 'При хората с безгрижен живот паметта често служи за изграждане и облагородяване на „социалния образ". В романа „Гордост и предразсъдъци" на Джейн Остин, героинята Елизабет Бенет използва спомените си за да изгради своята социална идентичност.',
+                  answer: 'При хората с безгрижен живот паметта често служи за изграждане и облагородяване на "социалния образ". В романа "Гордост и предразсъдъци" на Джейн Остин, героинята Елизабет Бенет използва спомените си за да изгради своята социална идентичност.',
                   conclusion: 'При лишените от сигурност паметта се превръща в морален ориентир, база за оцеляване и начин да запазят човечността си.'
                 },
                 {

@@ -57,13 +57,19 @@ const ModernMemory = () => {
       <InteractiveElements type="modern-memory" />
       
       <Box sx={{ mb: 6, textAlign: 'center' }}>
-        <Typography variant="h1" component="h1" gutterBottom>
-          Съвременна памет
-        </Typography>
-        <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
-          Технологии и иновации в съвременния свят
-        </Typography>
-        <MemoryIcon sx={{ color: '#6C63FF', fontSize: 48, mb: 2 }} />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Typography variant="h1" component="h1" gutterBottom>
+            Съвременна памет
+          </Typography>
+          <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
+            Дигиталната ера и трансформацията на паметта
+          </Typography>
+          <MemoryIcon sx={{ color: '#6C63FF', fontSize: 48, mb: 2 }} />
+        </motion.div>
       </Box>
 
       <Box sx={{ 

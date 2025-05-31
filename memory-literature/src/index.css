@@ -13,6 +13,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Attempt to force default scrollbar for all elements */
+* {
+  scrollbar-width: auto !important;
+  scrollbar-color: auto !important;
+}
+
+*::-webkit-scrollbar {
+  width: auto !important;
+}
+
+*::-webkit-scrollbar-track {
+  background: unset !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: unset !important;
+  border: unset !important;
+  border-radius: unset !important;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: unset !important;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

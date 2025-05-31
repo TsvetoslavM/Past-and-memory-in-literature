@@ -139,19 +139,6 @@ function App() {
           <Box sx={{ 
             height: 'calc(100vh - 64px)', 
             overflowY: 'auto',
-            '&::-webkit-scrollbar': {
-              width: '8px',
-            },
-            '&::-webkit-scrollbar-track': {
-              background: 'transparent',
-            },
-            '&::-webkit-scrollbar-thumb': {
-              background: 'linear-gradient(135deg, #6C63FF 0%, #FF6584 100%)',
-              borderRadius: '4px',
-            },
-            '&::-webkit-scrollbar-thumb:hover': {
-              background: 'linear-gradient(135deg, #8F88FF 0%, #FF8FA3 100%)',
-            },
           }}>
             <Routes>
               <Route path="/" element={<Home />} />
