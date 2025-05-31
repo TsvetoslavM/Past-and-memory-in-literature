@@ -1,195 +1,222 @@
-import { Container, Typography, Box, List, ListItem, ListItemText, Avatar } from '@mui/material';
-import GroupsIcon from '@mui/icons-material/Groups';
-import PersonIcon from '@mui/icons-material/Person';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import ArchiveIcon from '@mui/icons-material/ArchiveOutlined';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Container, Typography, Box, Paper, Grid } from '@mui/material';
+import { motion } from 'framer-motion';
 import InteractiveElements from '../components/InteractiveElements';
-import { useState } from 'react';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import GroupsIcon from '@mui/icons-material/Groups';
+import MuseumIcon from '@mui/icons-material/Museum';
+import HistoryIcon from '@mui/icons-material/History';
+import HealingIcon from '@mui/icons-material/Healing';
 
-const icons = [
-  <GroupsIcon fontSize="large" />, // Колективна памет
-  <PersonIcon fontSize="large" />, // Лична памет
-  <MenuBookIcon fontSize="large" />, // Културна памет
-  <ArchiveIcon fontSize="large" />, // Историческа памет
-];
-
-const gradients = [
-  'linear-gradient(135deg, #6C63FF 0%, #FF6584 100%)',
-  'linear-gradient(135deg, #43E97B 0%, #38F9D7 100%)',
-  'linear-gradient(135deg, #F7971E 0%, #FFD200 100%)',
-  'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)',
-];
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  })
+};
 
 const MemoryTypes = () => {
-  const [selectedType, setSelectedType] = useState<number | null>(null);
-
   const memoryTypes = [
     {
-      type: 'Колективна памет',
-      description: 'Споделената памет на група или общество, която формира колективната идентичност.',
+      title: "Лична (епизодична) памет",
+      icon: <PsychologyIcon sx={{ fontSize: 40 }} />,
+      color: "#6C63FF",
+      description: "Съхранява индивидуалните спомени на героите – преживявания, емоции, важни моменти от живота им.",
+      function: "Разкрива вътрешния свят на персонажите, мотивира действията им и обогатява психологическата дълбочина на творбата.",
       examples: [
-        'Национални празници и традиции',
-        'Исторически събития',
-        'Културни практики'
+        {
+          title: "\"Арменци\" - Пейо Яворов",
+          content: "Лирическият говорител изразява болката от загубата и носталгията по миналото, представяйки личната си памет за страданията на арменския народ."
+        },
+        {
+          title: "\"До моето първо либе\" - Христо Ботев",
+          content: "Поетът се обръща към първата си любов, споделяйки спомени и чувства, които разкриват личната му емоционална памет."
+        },
+        {
+          title: "\"Аз искам да те помня все така\" - Димчо Дебелянов",
+          content: "Стихотворението отразява стремежа на лирическия герой да запази спомена за любимата в най-красивата му форма."
+        }
       ]
     },
     {
-      type: 'Лична памет',
-      description: 'Индивидуалните спомени и опит, които формират личната идентичност.',
+      title: "Колективна (национална) памет",
+      icon: <GroupsIcon sx={{ fontSize: 40 }} />,
+      color: "#FF6584",
+      description: "Обединява спомените и историческите събития, които формират идентичността на една общност или народ.",
+      function: "Подчертава значимостта на общата история и културното наследство, често с цел събуждане на национално самосъзнание.",
       examples: [
-        'Детски спомени',
-        'Лични преживявания',
-        'Семейни истории'
+        {
+          title: "\"Паисий\" - Иван Вазов",
+          content: "Произведението подчертава значението на историческата памет за националното пробуждане и съхраняването на българската идентичност."
+        },
+        {
+          title: "\"История славянобългарска\" - Паисий Хилендарски",
+          content: "Този труд е призив към българите да помнят и ценят своето минало, като основа за национално самосъзнание."
+        },
+        {
+          title: "\"Епопея на забравените\" - Иван Вазов",
+          content: "Цикълът от поеми възкресява спомена за героични личности и събития, формиращи колективната памет на народа."
+        }
       ]
     },
     {
-      type: 'Културна памет',
-      description: 'Паметта, запазена в културните артефакти и практики.',
+      title: "Културна памет",
+      icon: <MuseumIcon sx={{ fontSize: 40 }} />,
+      color: "#4CAF50",
+      description: "Съхранява знания, традиции и ценности, предавани през поколенията чрез текстове, ритуали и символи.",
+      function: "Позволява на творбите да се свържат с предходни културни пластове, обогатявайки смисловите им нива.",
       examples: [
-        'Литературни произведения',
-        'Изкуство и архитектура',
-        'Фолклор и традиции'
+        {
+          title: "\"Изворът на Белоногата\" - Петко Р. Славейков",
+          content: "Поемата съчетава фолклорни мотиви и традиции, съхранявайки културната памет на българския народ."
+        },
+        {
+          title: "\"Железният светилник\" - Димитър Талев",
+          content: "Романът проследява съхраняването на българската културна идентичност в условията на чуждо владичество."
+        },
+        {
+          title: "\"Бай Ганьо\" - Алеко Константинов",
+          content: "Произведението представя образа на българина в края на XIX век, отразявайки културните особености и нрави на времето."
+        }
       ]
     },
     {
-      type: 'Историческа памет',
-      description: 'Документираната памет за минали събития и периоди.',
+      title: "Историческа памет",
+      icon: <HistoryIcon sx={{ fontSize: 40 }} />,
+      color: "#FF9800",
+      description: "Отнася се до записаните и документирани събития от миналото.",
+      function: "Предоставя контекст и автентичност на разказите, като често служи за анализ или критика на исторически процеси.",
       examples: [
-        'Исторически документи',
-        'Архивни материали',
-        'Научни изследвания'
+        {
+          title: "\"Под игото\" - Иван Вазов",
+          content: "Романът описва живота на българите преди Освобождението, съхранявайки историческата памет за този период."
+        },
+        {
+          title: "\"Записки по българските въстания\" - Захари Стоянов",
+          content: "Мемоарният труд документира събитията от Априлското въстание, предоставяйки ценна историческа информация."
+        },
+        {
+          title: "\"История\" - Никола Вапцаров",
+          content: "Стихотворението разглежда историята от гледна точка на обикновения човек, подчертавайки значението на паметта за миналото."
+        }
+      ]
+    },
+    {
+      title: "Травматична памет",
+      icon: <HealingIcon sx={{ fontSize: 40 }} />,
+      color: "#9C27B0",
+      description: "Съхранява болезнени или травматични спомени, които често се проявяват чрез символика или фрагментарни образи.",
+      function: "Изследва последствията от травми върху индивидуалната или колективната психика, често с цел катарзис или осмисляне.",
+      examples: [
+        {
+          title: "\"Ноев ковчег\" - Йордан Радичков",
+          content: "Разказът изследва личните и колективни спомени за трагични събития, отразявайки травматичната памет на героите."
+        },
+        {
+          title: "\"Септември\" - Гео Милев",
+          content: "Поемата представя трагичните събития от Септемврийското въстание, оставили дълбоки следи в националната памет."
+        },
+        {
+          title: "\"Крадецът на праскови\" - Емилиян Станев",
+          content: "Романът разглежда личните трагедии и загуби по време на война, отразявайки травматичната памет на героите."
+        }
       ]
     }
   ];
 
-  const handleCircleClick = (index: number) => {
-    setSelectedType(selectedType === index ? null : index);
-  };
-
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <InteractiveElements type="memory-types" />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Box sx={{ mb: 6, textAlign: 'center' }}>
+      
+      <Box sx={{ mb: 8, textAlign: 'center' }}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           <Typography variant="h1" component="h1" gutterBottom>
-            Видове памет в литературата
+            Видове памет
           </Typography>
           <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
-            Различни форми на запомняне и тяхното отражение в литературата
+            Различни форми на паметта в българската литература
           </Typography>
-        </Box>
+          <PsychologyIcon sx={{ color: '#6C63FF', fontSize: 48, mb: 2 }} />
+        </motion.div>
+      </Box>
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6, mt: 4 }}>
-          {memoryTypes.map((item, index) => (
-            <Box key={item.type} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 200 }}>
-              <motion.div
-                whileHover={{ scale: 1.12, y: -10}}
-                animate={selectedType === index ? { scale: 1.15 } : {}}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-              >
-                <Box
-                  onClick={() => handleCircleClick(index)}
-                  sx={{
-                    width: 170,
-                    height: 170,
-                    borderRadius: '50%',
-                    background: gradients[index],
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s',
-                    mb: 2,
-                    textAlign: 'center',
-                    p: 2,
-                    overflow: 'hidden',
-                    position: 'relative',
-                    backdropFilter: 'blur(6px)',
-                    WebkitBackdropFilter: 'blur(6px)',
-                  }}
-                >
-                  <Avatar
-                    sx={{
-                      bgcolor: 'rgba(255,255,255,0.7)',
-                      color: gradients[index].includes('#43E97B') ? '#43E97B' : '#6C63FF',
-                      width: 56,
-                      height: 56,
-                      mb: 1.5,
-                      boxShadow: '0 2px 8px #fff8',
-                    }}
-                  >
-                    {icons[index]}
-                  </Avatar>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: '#fff',
-                      fontWeight: 900,
-                      fontSize: '1.18rem',
-                      lineHeight: 1.2,
-                      wordBreak: 'break-word',
-                      textShadow: '0 2px 8px #6C63FF55',
-                    }}
-                  >
-                    {item.type}
-                  </Typography>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {memoryTypes.map((type, index) => (
+          <motion.div
+            key={type.title}
+            custom={index}
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+          >
+            <Paper
+              elevation={3}
+              sx={{
+                p: 4,
+                borderRadius: 4,
+                background: 'linear-gradient(135deg, #fff 0%, #f8f9ff 100%)',
+                border: '1px solid rgba(108, 99, 255, 0.1)',
+                transition: 'all 0.3s ease-in-out',
+                '&:hover': {
+                  transform: 'translateX(10px)',
+                  boxShadow: '0 8px 24px rgba(108, 99, 255, 0.15)'
+                }
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, gap: 2 }}>
+                <Box sx={{ color: type.color }}>
+                  {type.icon}
                 </Box>
-              </motion.div>
-              <AnimatePresence>
-                {selectedType === index && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.4 }}
-                    style={{ width: '100%' }}
-                  >
-                    <Box
-                      sx={{
-                        mt: 2,
-                        px: 2,
-                        py: 2,
-                        background: 'rgba(255,255,255,0.98)',
-                        borderRadius: 4,
-                        boxShadow: '0 8px 32px rgba(108,99,255,0.13)',
-                        border: `2px solid ${gradients[index].split(' ')[1]}`,
-                        minWidth: 220,
-                        maxWidth: 320,
-                        mx: 'auto',
-                        textAlign: 'center',
-                        backdropFilter: 'blur(8px)',
-                      }}
-                    >
-                      <Typography variant="body1" sx={{ mb: 2, color: 'primary.main', fontWeight: 600 }}>
-                        {item.description}
+                <Typography variant="h4" sx={{ color: type.color, fontWeight: 700 }}>
+                  {type.title}
+                </Typography>
+              </Box>
+
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="h6" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
+                  Описание
+                </Typography>
+                <Typography variant="body1" color="text.secondary" paragraph>
+                  {type.description}
+                </Typography>
+                <Typography variant="h6" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
+                  Функция в литературата
+                </Typography>
+                <Typography variant="body1" color="text.secondary" paragraph>
+                  {type.function}
+                </Typography>
+              </Box>
+
+              <Box sx={{ pl: 2, borderLeft: `3px solid ${type.color}` }}>
+                <Typography variant="h6" gutterBottom sx={{ color: 'text.primary', fontWeight: 600 }}>
+                  Примери
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {type.examples.map((example) => (
+                    <Box key={example.title} sx={{ mb: 2 }}>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600, color: type.color }}>
+                        {example.title}
                       </Typography>
-                      <Typography variant="subtitle2" sx={{ color: 'text.secondary', fontWeight: 600, mb: 1 }}>
-                        Примери:
+                      <Typography variant="body2" color="text.secondary">
+                        {example.content}
                       </Typography>
-                      <List>
-                        {item.examples.map((example, idx) => (
-                          <ListItem key={idx} sx={{ py: 0.5 }}>
-                            <ListItemText
-                              primary={<Typography variant="body2" sx={{ color: 'text.secondary' }}>• {example}</Typography>}
-                            />
-                          </ListItem>
-                        ))}
-                      </List>
                     </Box>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </Box>
-          ))}
-        </Box>
-      </motion.div>
+                  ))}
+                </Box>
+              </Box>
+            </Paper>
+          </motion.div>
+        ))}
+      </Box>
     </Container>
   );
 };
