@@ -230,14 +230,9 @@ function App() {
       <Box
         sx={{
           minHeight: '100vh',
-          width: '100vw',
-          overflowX: 'hidden',
+          width: '100%',
           background: 'linear-gradient(135deg, #F8F9FF 0%, #E8EAF6 100%)',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          position: 'relative',
           '&::before': {
             content: '""',
             position: 'absolute',
@@ -253,8 +248,9 @@ function App() {
         <Router>
           <Navigation />
           <Box sx={{ 
-            height: 'calc(100vh - 64px)', 
+            minHeight: 'calc(100vh - 64px)', 
             overflowY: 'auto',
+            position: 'relative'
           }}>
             <Routes>
               <Route path="/" element={<Home />} />
