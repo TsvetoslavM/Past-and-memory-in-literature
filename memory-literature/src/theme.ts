@@ -24,34 +24,127 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Poppins", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
-      fontSize: '3.5rem',
+      fontSize: '2.5rem',
       fontWeight: 800,
       letterSpacing: '-0.01562em',
       marginBottom: '1rem',
       background: 'linear-gradient(135deg, #6C63FF 0%, #FF6584 100%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
+      '@media (min-width:600px)': {
+        fontSize: '3rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '3.5rem',
+      },
     },
-    h5: {
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 700,
+      '@media (min-width:600px)': {
+        fontSize: '2.5rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '3rem',
+      },
+    },
+    h3: {
+      fontSize: '1.75rem',
+      fontWeight: 600,
+      '@media (min-width:600px)': {
+        fontSize: '2rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '2.5rem',
+      },
+    },
+    h4: {
       fontSize: '1.5rem',
       fontWeight: 600,
+      '@media (min-width:600px)': {
+        fontSize: '1.75rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '2rem',
+      },
+    },
+    h5: {
+      fontSize: '1.25rem',
+      fontWeight: 600,
       letterSpacing: '0.00735em',
+      '@media (min-width:600px)': {
+        fontSize: '1.5rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '1.75rem',
+      },
+    },
+    h6: {
+      fontSize: '1.1rem',
+      fontWeight: 600,
+      '@media (min-width:600px)': {
+        fontSize: '1.25rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '1.5rem',
+      },
     },
     body1: {
-      fontSize: '1.1rem',
+      fontSize: '1rem',
       lineHeight: 1.6,
+      '@media (min-width:600px)': {
+        fontSize: '1.1rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '1.2rem',
+      },
+    },
+    body2: {
+      fontSize: '0.875rem',
+      lineHeight: 1.6,
+      '@media (min-width:600px)': {
+        fontSize: '0.9rem',
+      },
+      '@media (min-width:900px)': {
+        fontSize: '1rem',
+      },
     },
   },
   components: {
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+          '@media (min-width:600px)': {
+            paddingTop: '1.5rem',
+            paddingBottom: '1.5rem',
+            paddingLeft: '2rem',
+            paddingRight: '2rem',
+          },
+          '@media (min-width:900px)': {
+            paddingTop: '2rem',
+            paddingBottom: '2rem',
+            paddingLeft: '3rem',
+            paddingRight: '3rem',
+          },
+        },
+      },
+    },
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: '16px',
+          borderRadius: '12px',
           boxShadow: '0 4px 20px rgba(108, 99, 255, 0.08)',
           transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: '0 8px 30px rgba(108, 99, 255, 0.12)',
+          '@media (min-width:600px)': {
+            borderRadius: '16px',
+            '&:hover': {
+              transform: 'translateY(-4px)',
+              boxShadow: '0 8px 30px rgba(108, 99, 255, 0.12)',
+            },
           },
         },
       },
@@ -59,23 +152,21 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '12px',
+          borderRadius: '8px',
           textTransform: 'none',
           fontWeight: 600,
-          padding: '10px 24px',
+          padding: '8px 16px',
+          fontSize: '0.875rem',
           transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-2px)',
-            boxShadow: '0 4px 12px rgba(108, 99, 255, 0.2)',
+          '@media (min-width:600px)': {
+            borderRadius: '12px',
+            padding: '10px 24px',
+            fontSize: '1rem',
+            '&:hover': {
+              transform: 'translateY(-2px)',
+              boxShadow: '0 4px 12px rgba(108, 99, 255, 0.2)',
+            },
           },
-        },
-      },
-    },
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          paddingTop: '2rem',
-          paddingBottom: '2rem',
         },
       },
     },
@@ -90,7 +181,7 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 8,
   },
 });
 

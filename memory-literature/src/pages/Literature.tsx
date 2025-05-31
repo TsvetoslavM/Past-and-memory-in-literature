@@ -311,12 +311,12 @@ const Literature = () => {
                   '::before': {
                     content: '""',
                     position: 'absolute',
-                    left: '50%',
+                    left: { xs: 0, md: '50%' },
                     top: 0,
-                    width: '4px',
-                    height: '100%',
+                    width: { xs: '100%', md: '4px' },
+                    height: { xs: '4px', md: '100%' },
                     background: 'linear-gradient(180deg, #6C63FF 0%, #FF6584 100%)',
-                    transform: 'translateX(-50%)',
+                    transform: { xs: 'none', md: 'translateX(-50%)' },
                     borderRadius: 2,
                     opacity: 0.18,
                     zIndex: 1,
@@ -332,9 +332,23 @@ const Literature = () => {
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', zIndex: 2, minWidth: 0 }}
+                    style={{ 
+                      flex: 1, 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      justifyContent: 'center', 
+                      alignItems: 'center', 
+                      zIndex: 2, 
+                      minWidth: 0
+                    }}
                   >
-                    <Box sx={{ px: { xs: 0, sm: 2, md: 4 }, py: 2, width: '100%' }}>
+                    <Box sx={{ 
+                      px: { xs: 0, sm: 2, md: 4 }, 
+                      py: 2, 
+                      width: '100%',
+                      borderBottom: { xs: '1px solid rgba(108, 99, 255, 0.1)', md: 'none' },
+                      pb: { xs: 3, md: 0 }
+                    }}>
                       <Typography variant="h5" sx={{ color: 'primary.main', fontWeight: 800, mb: 2, textAlign: 'center' }}>
                         {allLiteraryExamples[page].author}
                       </Typography>
@@ -364,9 +378,22 @@ const Literature = () => {
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', zIndex: 2, minWidth: 0 }}
+                    style={{ 
+                      flex: 1, 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      justifyContent: 'center', 
+                      alignItems: 'center', 
+                      zIndex: 2, 
+                      minWidth: 0
+                    }}
                   >
-                    <Box sx={{ px: { xs: 0, sm: 2, md: 4 }, py: 2, width: '100%' }}>
+                    <Box sx={{ 
+                      px: { xs: 0, sm: 2, md: 4 }, 
+                      py: 2, 
+                      width: '100%',
+                      pt: { xs: 3, md: 0 }
+                    }}>
                       <Box sx={{ my: 2, p: 2, bgcolor: 'rgba(108, 99, 255, 0.07)', borderRadius: 2, width: '100%' }}>
                         <Typography variant="body1" sx={{ fontStyle: 'italic', fontSize: '1.15rem', textAlign: 'center' }}>
                           "{allLiteraryExamples[page].quote}"

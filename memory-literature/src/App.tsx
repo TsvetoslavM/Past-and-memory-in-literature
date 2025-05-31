@@ -1,4 +1,4 @@
-import { ThemeProvider, CssBaseline, Box, AppBar, Toolbar, Typography, Button, Container } from '@mui/material';
+import { ThemeProvider, CssBaseline, Box, AppBar, Toolbar, Typography, Button, Container, Drawer, List, ListItem, ListItemButton, ListItemText, IconButton} from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import theme from './theme';
 import Home from './pages/Home';
@@ -7,10 +7,18 @@ import MemoryTypes from './pages/MemoryTypes';
 import Literature from './pages/Literature';
 import ModernMemory from './pages/ModernMemory';
 import Conclusion from './pages/Conclusion';
+import { useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
-const Navigation = () => {
+const Navigation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   const navItems = [
     { path: '/', label: 'Начало' },
@@ -20,6 +28,75 @@ const Navigation = () => {
     { path: '/modern-memory', label: 'Съвременна памет' },
     { path: '/conclusion', label: 'Заключение' }
   ];
+
+  const drawer = (
+    <Box 
+      onClick={handleDrawerToggle} 
+      sx={{ 
+        textAlign: 'center',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'linear-gradient(135deg, #F8F9FF 0%, #E8EAF6 100%)',
+      }}
+    >
+      <Box sx={{ 
+        p: 2, 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        borderBottom: '1px solid rgba(108, 99, 255, 0.1)'
+      }}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            background: 'linear-gradient(135deg, #6C63FF 0%, #FF6584 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
+          Да помниш значи да живееш
+        </Typography>
+        <IconButton onClick={handleDrawerToggle} sx={{ color: 'primary.main' }}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
+      <List sx={{ flex: 1, px: 2 }}>
+        {navItems.map((item) => (
+          <ListItem key={item.path} disablePadding sx={{ mb: 1 }}>
+            <ListItemButton
+              onClick={() => navigate(item.path)}
+              sx={{
+                borderRadius: 2,
+                textAlign: 'center',
+                color: location.pathname === item.path ? 'primary.main' : 'text.secondary',
+                fontWeight: location.pathname === item.path ? 600 : 400,
+                background: location.pathname === item.path 
+                  ? 'linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 101, 132, 0.1) 100%)'
+                  : 'transparent',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 101, 132, 0.1) 100%)',
+                  transform: 'translateX(8px)',
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              <ListItemText 
+                primary={item.label} 
+                primaryTypographyProps={{
+                  sx: {
+                    fontSize: '1.1rem',
+                    fontWeight: location.pathname === item.path ? 600 : 400,
+                  }
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
 
   return (
     <AppBar 
@@ -32,7 +109,23 @@ const Navigation = () => {
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Toolbar sx={{ justifyContent: 'space-between', minHeight: { xs: 56, sm: 64 } }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ 
+              mr: 2, 
+              display: { sm: 'none' },
+              color: 'primary.main',
+              '&:hover': {
+                background: 'rgba(108, 99, 255, 0.1)',
+              }
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
           <Typography 
             variant="h6" 
             component="div" 
@@ -43,6 +136,7 @@ const Navigation = () => {
               WebkitTextFillColor: 'transparent',
               cursor: 'pointer',
               transition: 'transform 0.3s ease',
+              fontSize: { xs: '1.1rem', sm: '1.25rem' },
               '&:hover': {
                 transform: 'scale(1.05)',
               }
@@ -51,13 +145,13 @@ const Navigation = () => {
           >
             Да помниш значи да живееш
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 2 }}>
             {navItems.map((item) => (
               <Button
                 key={item.path}
                 onClick={() => navigate(item.path)}
                 sx={{
-                  color: location.pathname === item.path ? theme.palette.primary.main : 'text.secondary',
+                  color: location.pathname === item.path ? 'primary.main' : 'text.secondary',
                   fontWeight: location.pathname === item.path ? 600 : 400,
                   position: 'relative',
                   transition: 'all 0.3s ease',
@@ -103,6 +197,28 @@ const Navigation = () => {
           </Box>
         </Toolbar>
       </Container>
+      <Drawer
+        variant="temporary"
+        anchor="left"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true,
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { 
+            boxSizing: 'border-box', 
+            width: '100%',
+            maxWidth: 300,
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(10px)',
+            borderRight: '1px solid rgba(108, 99, 255, 0.1)',
+          },
+        }}
+      >
+        {drawer}
+      </Drawer>
     </AppBar>
   );
 };

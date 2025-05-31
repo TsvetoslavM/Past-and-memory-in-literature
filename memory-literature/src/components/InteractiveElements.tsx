@@ -1,4 +1,6 @@
 import { Box, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
 
 interface InteractiveElementsProps {
@@ -6,6 +8,14 @@ interface InteractiveElementsProps {
 }
 
 const InteractiveElements = ({ type }: InteractiveElementsProps) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  // If on mobile, don't render the component
+  if (isMobile) {
+    return null;
+  }
+
   const elements = {
     origin: {
       icon: '⏳',
