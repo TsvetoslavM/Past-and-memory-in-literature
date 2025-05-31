@@ -88,7 +88,7 @@ const MemoryTypes = () => {
           {memoryTypes.map((item, index) => (
             <Box key={item.type} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 200 }}>
               <motion.div
-                whileHover={{ scale: 1.12, y: -10, boxShadow: '0 8px 32px 0px #6C63FF33' }}
+                whileHover={{ scale: 1.12, y: -10}}
                 animate={selectedType === index ? { scale: 1.15 } : {}}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
@@ -100,9 +100,6 @@ const MemoryTypes = () => {
                     height: 170,
                     borderRadius: '50%',
                     background: gradients[index],
-                    boxShadow: selectedType === index
-                      ? '0 0 32px 8px #FF6584AA, 0 8px 32px 0px #6C63FF33'
-                      : '0 2px 16px 0px #6C63FF22',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
